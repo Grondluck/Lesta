@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TXT Parser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="txt" class="mt-2">
+            <button type="submit" class="btn btn-primary">Отправить файл</button>
+        </form>
+    </header>
+    <section class="container">
+        {% for words in tables%}
+        <h1>
+            <h2>Таблица {{ forloop.counter }}</h2>
+        </h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Слово</th>
+                    <th scope="col">TF</th>
+                    <th scope="col">IDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word, data in words.items %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{word}}</td>
+                    <td>{{data.tf}}</td>
+                    <td>{{data.idf}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {% endfor %}
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
