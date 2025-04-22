@@ -17,6 +17,9 @@
             <input type="file" name="txt" class="mt-2">
             <button type="submit" class="btn btn-primary">Отправить файл</button>
         </form>
+        <form method="POST"> {% csrf_token %}
+            <button type="submit" class="btn btn-secondary" name="reset">Reset</button>
+        </form>
     </header>
     <section class="container">
         {% for words in tables%}
