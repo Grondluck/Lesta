@@ -36,12 +36,12 @@
                 </tr>
             </thead>
             <tbody>
-                {% for word, data in words.items %}
+                {% for word in words %}
                 <tr>
                     <th scope="row">{{forloop.counter}}</th>
-                    <td>{{word}}</td>
-                    <td>{{data.tf}}</td>
-                    <td>{{data.idf}}</td>
+                    <td>{{word.word}}</td>
+                    <td>{{word.tf}}</td>
+                    <td>{{word.idf}}</td>
                 </tr>
                 {% endfor %}
 
